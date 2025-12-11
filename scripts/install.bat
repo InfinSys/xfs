@@ -15,7 +15,6 @@ SET "PROJECT_ROOT=%CD%"
 
 :: Installation path prefix
 SET "INSTALL_PATH_PREFIX=%PROJECT_ROOT%\install\%CMAKE_PRESET%"
-:: TODO: Configure build installation path prefix
 
 :: Check if COMPONENT is empty
 IF "%COMPONENT%"=="" (

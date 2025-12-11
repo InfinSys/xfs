@@ -13,8 +13,6 @@
 #ifndef @RESOLVED_SFTW_META_PREFIX@_SOFTWARE_IDENTITY_H_
 #define @RESOLVED_SFTW_META_PREFIX@_SOFTWARE_IDENTITY_H_
 
-#include <stdint.h>
-
 extern "C"
 {
 

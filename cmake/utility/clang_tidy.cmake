@@ -56,7 +56,7 @@ file(
 )
 
 add_custom_target(
-    ${PRJ_PREFIX}_clang_tidy
+    XFS_clang_tidy
 
     COMMAND
         ${CLANG_TIDY_EXECUTABLE}

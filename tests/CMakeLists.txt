@@ -3,14 +3,14 @@
 #     /tests Directory Script
 #==================================
 
-if(${PRJ_PREFIX}_CLI_DEBUG)
+if(XFS_CLI_DEBUG)
     add_subdirectory(cli)
 endif()
 
-if(${PRJ_PREFIX}_UNIT_TEST)
+if(XFS_UNIT_TEST)
     add_subdirectory(unit)
 endif()
 
-if(${PRJ_PREFIX}_BENCHMARK)
+if(XFS_BENCHMARK)
     add_subdirectory(benchmark)
 endif()

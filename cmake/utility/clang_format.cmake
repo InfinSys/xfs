@@ -45,7 +45,7 @@ endforeach()
 
 # Create Clang-Format utility target
 add_custom_target(
-    ${PRJ_PREFIX}_clang_format
+    XFS_clang_format
 
     COMMAND clang-format -i ${FORMAT_FILE_LIST}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}

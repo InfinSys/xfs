@@ -5,25 +5,25 @@
 
 # TODO: Setup g++ compiler configuration (if applicable)
 
-set(${PRJ_PREFIX}_GCC_CXX_VERSION_MIN 14 CACHE STRING "Minimum g++ compiler version")
+set(XFS_GCC_CXX_VERSION_MIN 14 CACHE STRING "Minimum g++ compiler version")
 
 # Confirm supported g++ compiler version
-if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${${PRJ_PREFIX}_GCC_CXX_VERSION_MIN})
+if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS ${XFS_GCC_CXX_VERSION_MIN})
     message(FATAL_ERROR "Incompatible version of GCC C++ compiler for ${CMAKE_PROJECT_NAME}.")
 endif()
 
 # Compiler feature configuration target
-add_library(${PRJ_PREFIX}_gcc_cxx_features INTERFACE)
+add_library(XFS_gcc_cxx_features INTERFACE)
 # Compiler diagnostics configuration target
-add_library(${PRJ_PREFIX}_gcc_cxx_warnings INTERFACE)
+add_library(XFS_gcc_cxx_warnings INTERFACE)
 # General compiler configuration target
-add_library(${PRJ_PREFIX}_gcc_cxx_options INTERFACE)
+add_library(XFS_gcc_cxx_options INTERFACE)
 # Preprocessor definitions target
-add_library(${PRJ_PREFIX}_gcc_cxx_defines INTERFACE)
+add_library(XFS_gcc_cxx_defines INTERFACE)
 
 # Set C++ standard version
 target_compile_features(
-    ${PRJ_PREFIX}_gcc_cxx_features
+    XFS_gcc_cxx_features
 
     INTERFACE
         cxx_std_20
@@ -31,7 +31,7 @@ target_compile_features(
 
 # Set compiler warning flags
 target_compile_options(
-    ${PRJ_PREFIX}_gcc_cxx_warnings
+    XFS_gcc_cxx_warnings
 
     INTERFACE
         # Compiler warning flags
@@ -41,9 +41,9 @@ target_compile_options(
 )
 
 # Conditionally add more aggressive warnings
-if(${PRJ_PREFIX}_STRICT_CXX_WARNINGS)
+if(XFS_STRICT_CXX_WARNINGS)
     target_compile_options(
-        ${PRJ_PREFIX}_gcc_cxx_warnings
+        XFS_gcc_cxx_warnings
 
         INTERFACE
             "-Werror"
@@ -55,7 +55,7 @@ endif()
 
 # Conditionally set compiler optimization level
 target_compile_options(
-    ${PRJ_PREFIX}_gcc_cxx_options
+    XFS_gcc_cxx_options
 
     INTERFACE
         # Disable optimization on debug
@@ -71,33 +71,32 @@ target_compile_options(
 
 # Define preprocessor definitions
 target_compile_definitions(
-    ${PRJ_PREFIX}_gcc_cxx_defines
+    XFS_gcc_cxx_defines
 
     INTERFACE
         # Unconditional preprocessor definitions
-        ${PRJ_PREFIX}
+        XFS
 
         # Preprocessor definitions on debug
         $<$<CONFIG:Debug>:
-            _${PRJ_PREFIX}_DEBUG
-            ${PRJ_PREFIX}_DEBUG
+            _XFS_DEBUG
         >
 
         # Preprocessor definitions on release
         $<$<CONFIG:Release>:
-            ${PRJ_PREFIX}_RELEASE
+            XFS_RELEASE
         >
 )
 
 # Complete GCC C++ compiler package
-add_library(${PRJ_PREFIX}_gcc_cxx_bundle INTERFACE)
+add_library(XFS_gcc_cxx_bundle INTERFACE)
 
 target_link_libraries(
-    ${PRJ_PREFIX}_gcc_cxx_bundle
+    XFS_gcc_cxx_bundle
     
     INTERFACE
-        ${PRJ_PREFIX}_gcc_cxx_features
-        ${PRJ_PREFIX}_gcc_cxx_warnings
-        ${PRJ_PREFIX}_gcc_cxx_options
-        ${PRJ_PREFIX}_gcc_cxx_defines
+        XFS_gcc_cxx_features
+        XFS_gcc_cxx_warnings
+        XFS_gcc_cxx_options
+        XFS_gcc_cxx_defines
 )

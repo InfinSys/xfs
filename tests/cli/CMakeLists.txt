@@ -3,30 +3,36 @@
 #     /tests/cli Directory Script
 #======================================
 
-# Create developer command line executable
 add_executable(dev_cli_debug "dev_exe.cpp")
 
-if(${${PRJ_PREFIX}_CXX_GCC})
+if(${XFS_CXX_GCC})
     target_link_libraries(
         dev_cli_debug
     
         PRIVATE
-        ${PRJ_PREFIX}_gcc_cxx_bundle
+        XFS_gcc_cxx_bundle
+        XFS_gcc_c_defines
     )
-# elseif(${${PRJ_PREFIX}_CXX_CLANG})
-elseif(${${PRJ_PREFIX}_CXX_MSVC})
+elseif(${XFS_CXX_CLANG})
+    target_link_libraries(
+        xfs
+    
+        PRIVATE
+        XFS_clang_cxx_bundle
+        XFS_clang_c_defines
+    )
+elseif(${XFS_CXX_MSVC})
     target_link_libraries(
         dev_cli_debug
     
         PRIVATE
-        ${PRJ_PREFIX}_msvc_cxx_bundle
+        XFS_msvc_cxx_bundle
     )
 endif()
 
-# Setup installation of developer executable
 install(
     TARGETS dev_cli_debug
-    COMPONENT DevDebugApp
+    COMPONENT DevCLI
     EXPORT dev_cli_debug-targets
 
     RUNTIME

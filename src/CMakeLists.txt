@@ -3,49 +3,56 @@
 #     /src Directory Script
 #================================
 
-# TODO: Handle project source targets...
 
-add_executable(Demo_Executable)
-
-target_sources(
-    Demo_Executable
-
-    PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp"
-)
+# Main XFS library target
+add_library(xfs STATIC)
 
 target_include_directories(
-    Demo_Executable
+    xfs
 
     PRIVATE
-    "${${PRJ_PREFIX}_SOURCE_DIR}/include"
+    "${XFS_SOURCE_DIR}/include"
 )
 
-# Conditionally link against compiler configuration
-if(${${PRJ_PREFIX}_CXX_GCC})
+# NOTE: Temporary library source
+target_sources(
+    xfs
+
+    PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/temporary.cpp"
+)
+# NOTE: Library source directories here
+
+if(${XFS_CXX_GCC})
     target_link_libraries(
-        Demo_Executable
+        xfs
     
         PRIVATE
-        ${PRJ_PREFIX}_gcc_cxx_bundle
-        ${PRJ_PREFIX}_gcc_c_defines
+        XFS_gcc_cxx_bundle
+        XFS_gcc_c_defines
     )
-# elseif(${${PRJ_PREFIX}_CXX_CLANG})
-elseif(${${PRJ_PREFIX}_CXX_MSVC})
+elseif(${XFS_CXX_CLANG})
     target_link_libraries(
-        Demo_Executable
+        xfs
     
         PRIVATE
-        ${PRJ_PREFIX}_msvc_cxx_bundle
+        XFS_clang_cxx_bundle
+        XFS_clang_c_defines
+    )
+elseif(${XFS_CXX_MSVC})
+    target_link_libraries(
+        xfs
+    
+        PRIVATE
+        XFS_msvc_cxx_bundle
     )
 endif()
 
-# Setup installation of demo executable
 install(
-    TARGETS Demo_Executable
-    COMPONENT DemoApp
-    EXPORT Demo_Executable-targets
+    TARGETS xfs
+    COMPONENT XFSLib
+    EXPORT xfs-targets
 
     RUNTIME
-        DESTINATION ${CMAKE_INSTALL_BINDIR}
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )

@@ -5,25 +5,25 @@
 
 # TODO: Setup clang compiler configuration (if applicable)
 
-set(${PRJ_PREFIX}_CLANG_C_VERSION_MIN 14 CACHE STRING "Minimum clang compiler version")
+set(XFS_CLANG_C_VERSION_MIN 14 CACHE STRING "Minimum clang compiler version")
 
 # Confirm supported clang compiler version
-if(CMAKE_C_COMPILER_VERSION VERSION_LESS ${${PRJ_PREFIX}_CLANG_C_VERSION_MIN})
+if(CMAKE_C_COMPILER_VERSION VERSION_LESS ${XFS_CLANG_C_VERSION_MIN})
     message(FATAL_ERROR "Incompatible version of Clang C compiler for ${CMAKE_PROJECT_NAME}.")
 endif()
 
 # Compiler feature configuration target
-add_library(${PRJ_PREFIX}_clang_c_features INTERFACE)
+add_library(XFS_clang_c_features INTERFACE)
 # Compiler diagnostics configuration target
-add_library(${PRJ_PREFIX}_clang_c_warnings INTERFACE)
+add_library(XFS_clang_c_warnings INTERFACE)
 # General compiler configuration target
-add_library(${PRJ_PREFIX}_clang_c_options INTERFACE)
+add_library(XFS_clang_c_options INTERFACE)
 # Preprocessor definitions target
-add_library(${PRJ_PREFIX}_clang_c_defines INTERFACE)
+add_library(XFS_clang_c_defines INTERFACE)
 
 # Set C standard version
 target_compile_features(
-    ${PRJ_PREFIX}_clang_c_features
+    XFS_clang_c_features
 
     INTERFACE
         c_std_11
@@ -31,7 +31,7 @@ target_compile_features(
 
 # Set compiler warning flags
 target_compile_options(
-    ${PRJ_PREFIX}_clang_c_warnings
+    XFS_clang_c_warnings
 
     INTERFACE
         # Compiler warning flags
@@ -41,9 +41,9 @@ target_compile_options(
 )
 
 # Conditionally add more aggressive warnings
-if(${PRJ_PREFIX}_STRICT_C_WARNINGS)
+if(XFS_STRICT_C_WARNINGS)
     target_compile_options(
-        ${PRJ_PREFIX}_clang_c_warnings
+        XFS_clang_c_warnings
 
         INTERFACE
             "-Werror"
@@ -55,7 +55,7 @@ endif()
 
 # Conditionally set compiler optimization level
 target_compile_options(
-    ${PRJ_PREFIX}_clang_c_options
+    XFS_clang_c_options
 
     INTERFACE
         # Disable optimization on debug
@@ -71,33 +71,22 @@ target_compile_options(
 
 # Define preprocessor definitions
 target_compile_definitions(
-    ${PRJ_PREFIX}_clang_c_defines
+    XFS_clang_c_defines
 
     INTERFACE
         # Unconditional preprocessor definitions
-        ${PRJ_PREFIX}_C_LANG
-
-        # Preprocessor definitions on debug
-        $<$<CONFIG:Debug>:
-            _${PRJ_PREFIX}_C_DEBUG
-            ${PRJ_PREFIX}_C_DEBUG
-        >
-
-        # Preprocessor definitions on release
-        $<$<CONFIG:Release>:
-            ${PRJ_PREFIX}_C_RELEASE
-        >
+        XFS_C_LANG
 )
 
 # Complete Clang C++ compiler package
-add_library(${PRJ_PREFIX}_clang_c_bundle INTERFACE)
+add_library(XFS_clang_c_bundle INTERFACE)
 
 target_link_libraries(
-    ${PRJ_PREFIX}_clang_c_bundle
+    XFS_clang_c_bundle
     
     INTERFACE
-        ${PRJ_PREFIX}_clang_c_features
-        ${PRJ_PREFIX}_clang_c_warnings
-        ${PRJ_PREFIX}_clang_c_options
-        ${PRJ_PREFIX}_clang_c_defines
+        XFS_clang_c_features
+        XFS_clang_c_warnings
+        XFS_clang_c_options
+        XFS_clang_c_defines
 )

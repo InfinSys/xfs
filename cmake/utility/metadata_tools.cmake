@@ -24,11 +24,11 @@ endmacro()
 # Cache a temporary short-named variable for use in file configuration
 macro(create_template_reference REF_NAME REF_KEY)
     if(REF_NAME STREQUAL "")
-        message(FATAL_ERROR "No reference name provided for '${${PRJ_PREFIX}_${REF_KEY}}' value.")
+        message(FATAL_ERROR "No reference name provided for '${XFS_${REF_KEY}}' value.")
     endif()
     
     # NOTE: 'REF_NAME' provided is prefixed with 'RESOLVED_'
-    set(RESOLVED_${REF_NAME} ${${PRJ_PREFIX}_${REF_KEY}} CACHE STRING "Temporary" FORCE)
+    set(RESOLVED_${REF_NAME} ${XFS_${REF_KEY}} CACHE STRING "Temporary" FORCE)
     list(APPEND TEMP_CACHE_VARS RESOLVED_${REF_NAME})
 endmacro()
 
@@ -50,7 +50,7 @@ macro(set_metadata FIELD VALUE)
         set(ARGSS_DESCRIPTION "No description provided for '${FIELD}'")
     endif()
 
-    set(${PRJ_PREFIX}_${FIELD} "${VALUE}" CACHE STRING "${ARGSS_DESCRIPTION}" FORCE)
+    set(XFS_${FIELD} "${VALUE}" CACHE STRING "${ARGSS_DESCRIPTION}" FORCE)
 endmacro()
 
 # Create list that stores temporarily cached variable names
