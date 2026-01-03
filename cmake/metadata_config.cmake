@@ -49,13 +49,13 @@ configure_template(
 )
 
 configure_template(
-    "${XFS_SOURCE_DIR}/lib/xfs_metadata/templ/info.h.in"
-    "${XFS_SOURCE_DIR}/lib/xfs_metadata/info.h"
+    "${XFS_SOURCE_DIR}/lib/include/xfs_metadata/templ/info.h.in"
+    "${XFS_SOURCE_DIR}/lib/include/xfs_metadata/info.h"
 )
 
 configure_template(
-    "${XFS_SOURCE_DIR}/lib/xfs_metadata/templ/version.h.in"
-    "${XFS_SOURCE_DIR}/lib/xfs_metadata/version.h"
+    "${XFS_SOURCE_DIR}/lib/include/xfs_metadata/templ/version.h.in"
+    "${XFS_SOURCE_DIR}/lib/include/xfs_metadata/version.h"
 )
 
 clear_temporary_cache()

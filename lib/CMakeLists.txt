@@ -4,5 +4,5 @@
 #================================
 
 # Library sources
-add_subdirectory(xfs_metadata)
+add_subdirectory(include/xfs_metadata)
 # TODO: Add other project library source directories...
