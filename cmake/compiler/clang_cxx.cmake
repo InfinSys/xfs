@@ -3,8 +3,6 @@
 #     Clang C++ COMPILER CONFIGURATION (clang++)
 #=====================================================
 
-# TODO: Setup clang++ compiler configuration (if applicable)
-
 set(XFS_CLANG_CXX_VERSION_MIN 14 CACHE STRING "Minimum clang++ compiler version")
 
 # Confirm supported clang++ compiler version
@@ -53,7 +51,6 @@ if(XFS_STRICT_CXX_WARNINGS)
     )
 endif()
 
-# Conditionally set compiler optimization level
 target_compile_options(
     XFS_clang_cxx_options
 
@@ -67,6 +64,9 @@ target_compile_options(
         $<$<CONFIG:Release>:
             "-O2"
         >
+
+        "-fvisibility=hidden"
+        "-fvisibility-inlines-hidden"
 )
 
 # Define preprocessor definitions
@@ -75,17 +75,7 @@ target_compile_definitions(
 
     INTERFACE
         # Unconditional preprocessor definitions
-        XFS
-
-        # Preprocessor definitions on debug
-        $<$<CONFIG:Debug>:
-            _XFS_DEBUG
-        >
-
-        # Preprocessor definitions on release
-        $<$<CONFIG:Release>:
-            XFS_RELEASE
-        >
+        XFS_CLANG
 )
 
 # Complete Clang C++ compiler package
@@ -99,4 +89,5 @@ target_link_libraries(
         XFS_clang_cxx_warnings
         XFS_clang_cxx_options
         XFS_clang_cxx_defines
+        XFS_global_cxx_defines
 )

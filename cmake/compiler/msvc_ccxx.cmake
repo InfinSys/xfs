@@ -3,8 +3,6 @@
 #     MICROSOFT VISUAL C/C++ COMPILER CONFIGURATION (cl.exe)
 #=================================================================
 
-# TODO: Setup cl.exe compiler configuration (if applicable)
-
 set(XFS_MSVC_VERSION_MIN 1940 CACHE STRING "Minimum MSVC compiler version")
 
 # Confirm supported MSVC compiler version
@@ -105,18 +103,7 @@ target_compile_definitions(
 
     INTERFACE
         # Unconditional preprocessor definitions
-        XFS
-        XFS_WIN32
-
-        # Preprocessor definitions on debug build
-        $<$<CONFIG:Debug>:
-            _XFS_DEBUG
-        >
-
-        # Preprocessor definitions on release build
-        $<$<CONFIG:Release>:
-            XFS_RELEASE
-        >
+        XFS_MSVC
 )
 
 # Complete MSVC C++ compiler package
@@ -132,6 +119,7 @@ target_link_libraries(
         XFS_msvc_cxx_warnings
         XFS_msvc_cxx_options
         XFS_msvc_common_defines
+        XFS_global_cxx_defines
 )
 
 target_link_libraries(
@@ -142,4 +130,5 @@ target_link_libraries(
         XFS_msvc_c_warnings
         XFS_msvc_c_options
         XFS_msvc_common_defines
+        XFS_global_c_defines
 )

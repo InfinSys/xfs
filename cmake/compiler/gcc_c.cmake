@@ -3,8 +3,6 @@
 #     GCC C COMPILER CONFIGURATION (gcc)
 #=============================================
 
-# TODO: Setup gcc compiler configuration (if applicable)
-
 set(XFS_GCC_C_VERSION_MIN 14 CACHE STRING "Minimum gcc compiler version")
 
 # Confirm supported gcc compiler version
@@ -53,7 +51,6 @@ if(XFS_STRICT_C_WARNINGS)
     )
 endif()
 
-# Conditionally set compiler optimization level
 target_compile_options(
     XFS_gcc_c_options
 
@@ -67,6 +64,8 @@ target_compile_options(
         $<$<CONFIG:Release>:
             "-O2"
         >
+
+        "-fvisibility=hidden"
 )
 
 # Define preprocessor definitions
@@ -75,7 +74,7 @@ target_compile_definitions(
 
     INTERFACE
         # Unconditional preprocessor definitions
-        XFS_C_LANG
+        XFS_GCC
 )
 
 # Complete GCC C compiler package
@@ -89,4 +88,5 @@ target_link_libraries(
         XFS_gcc_c_warnings
         XFS_gcc_c_options
         XFS_gcc_c_defines
+        XFS_global_c_defines
 )

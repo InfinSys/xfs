@@ -6,6 +6,9 @@
 # This script should be invoked from the root
 # CMakeLists.txt file.
 
+# Include global C compiler configuration script
+include(cmake/compiler/global_c.cmake)
+
 # Include current C compiler configuration script
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
     # GCC C compiler
@@ -21,6 +24,9 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "MSVC")
 else()
     message(FATAL_ERROR "Configuration script required for ${CMAKE_C_COMPILER_ID} C compiler.")
 endif()
+
+# Include global C++ compiler configuration script
+include(cmake/compiler/global_cxx.cmake)
 
 # Include current C++ compiler configuration script
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
