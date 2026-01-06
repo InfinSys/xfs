@@ -30,6 +30,13 @@ elseif(${XFS_CXX_MSVC})
     )
 endif()
 
+target_link_libraries(
+    dev_cli_debug
+
+    PRIVATE
+    xfs
+)
+
 install(
     TARGETS dev_cli_debug
     COMPONENT DevCLI

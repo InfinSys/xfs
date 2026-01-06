@@ -3,14 +3,13 @@
 #     /src Directory Script
 #================================
 
-
 # Main XFS library target
 add_library(xfs STATIC)
 
 target_include_directories(
     xfs
 
-    PRIVATE
+    PUBLIC
     "${XFS_SOURCE_DIR}/include"
 )
 
@@ -22,6 +21,9 @@ target_sources(
     "${CMAKE_CURRENT_SOURCE_DIR}/temporary.cpp"
 )
 # NOTE: Library source directories here
+
+# XFS Sources
+#add_subdirectory("path")
 
 if(${XFS_CXX_GCC})
     target_link_libraries(

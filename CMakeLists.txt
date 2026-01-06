@@ -39,7 +39,6 @@ include(GNUInstallDirs)
 add_subdirectory(lib)
 add_subdirectory(src)
 
-# Confirm this is top-level project
 if (${CMAKE_PROJECT_NAME}_IS_TOP_LEVEL)
     # Testing sources
     add_subdirectory(tests)

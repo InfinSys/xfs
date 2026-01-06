@@ -10,7 +10,9 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER": "cl.exe",
                 "CMAKE_CXX_COMPILER": "cl.exe",
-                "XFS_CLI_DEBUG": "ON"
+                "XFS_CLI_DEBUG": "ON",
+                "XFS_CLANG_TIDY": "ON",
+                "XFS_CLANG_FORMAT": "ON"
             }
         },
         {
@@ -22,7 +24,9 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER": "gcc.exe",
                 "CMAKE_CXX_COMPILER": "g++.exe",
-                "XFS_CLI_DEBUG": "ON"
+                "XFS_CLI_DEBUG": "ON",
+                "XFS_CLANG_TIDY": "ON",
+                "XFS_CLANG_FORMAT": "ON"
             }
         },
         {
@@ -57,7 +61,9 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER": "gcc",
                 "CMAKE_CXX_COMPILER": "g++",
-                "XFS_CLI_DEBUG": "ON"
+                "XFS_CLI_DEBUG": "ON",
+                "XFS_CLANG_TIDY": "ON",
+                "XFS_CLANG_FORMAT": "ON"
             }
         },
         {
@@ -69,7 +75,9 @@
                 "CMAKE_BUILD_TYPE": "Debug",
                 "CMAKE_C_COMPILER": "clang",
                 "CMAKE_CXX_COMPILER": "clang++",
-                "XFS_CLI_DEBUG": "ON"
+                "XFS_CLI_DEBUG": "ON",
+                "XFS_CLANG_TIDY": "ON",
+                "XFS_CLANG_FORMAT": "ON"
             }
         },
         {
