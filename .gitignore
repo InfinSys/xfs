@@ -2,6 +2,7 @@
 # Ignore IDE project directories
 .vs/*
 .vscode/*
+.idea/*
 
 # EXCEPT THE FOLLOWING IDE PROJECT FILES:
 !.vscode/launch.json
