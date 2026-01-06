@@ -12,7 +12,6 @@ set(
     "${CMAKE_SOURCE_DIR}/lib"
     "${CMAKE_SOURCE_DIR}/include"
     "${CMAKE_SOURCE_DIR}/src"
-    "${CMAKE_SOURCE_DIR}/tests"
 )
 
 # File extensions to target
