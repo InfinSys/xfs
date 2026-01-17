@@ -25,12 +25,24 @@ namespace xfs::win32::path
 
 /*!
  * @brief
- * Microsoft Windows path policy.
+ * Windows platform path policy.
  */
 template <typename CharEncode_T>
-class WindowsPathPolicy : public xfs::path::SystemPathPolicy<CharEncode_T, DELIMITER_CHAR> {
+class WindowsPathPolicy final
+	: public xfs::path::SystemPathPolicy<CharEncode_T, (CharEncode_T)DELIMITER_CHAR> {
+	/*! @brief Windows path policy base class. */
+	using Base = xfs::path::SystemPathPolicy<CharEncode_T, (CharEncode_T)DELIMITER_CHAR>;
+
 public:
-	//static PathStringType toNormalPath(const PathStringType& path) noexcept;
+	WindowsPathPolicy() noexcept = delete;
+	~WindowsPathPolicy() noexcept = delete;
+
+	static Base::PathStringType makeNormalPath(const Base::PathStringType& path) noexcept;
+
+	// static PathCharType makeNormalPath(const PathCharType& path) noexcept
+	// {
+	// 	return PathCharType{};
+	// }
 };
 
 }

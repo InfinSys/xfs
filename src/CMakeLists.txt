@@ -24,6 +24,7 @@ target_sources(
 
 # XFS Sources
 #add_subdirectory("path")
+add_subdirectory("platform/win32")
 
 if(${XFS_CXX_GCC})
     target_link_libraries(
